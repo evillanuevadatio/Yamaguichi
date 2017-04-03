@@ -6,11 +6,17 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import java.util.Properties;
 import org.apache.commons.cli.*;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class TransactionProducer{
     public static void main( String[] args ) throws Exception{
     
         Options options = new Options();
     	Properties props = new Properties();
+        BufferedReader br = null;
         
         Option input = new Option("i", "input", true, "input csv file transactions");
         input.setRequired(true);     options.addOption(input);
@@ -38,11 +44,14 @@ public class TransactionProducer{
  	    
             KafkaProducer<String, String> producer = new KafkaProducer(props);
         
-            String msg ="12345678901234567890";
 
-            for (int i = 0; i < 100; i++) {
-                ProducerRecord<String, String> record = new ProducerRecord(cmd.getOptionValue("topic"), "msg_" + i+ "-" + msg);
+            String line = "";
+            br = new BufferedReader(new FileReader(  cmd.getOptionValue("input")  ));
+            while ((line = br.readLine()) != null) {
+
+                ProducerRecord<String, String> record = new ProducerRecord(cmd.getOptionValue("topic"), line );
                 producer.send(record);
+                 Thread.sleep( Integer.parseInt( cmd.getOptionValue("sleep") ));
             }
 
             producer.close();
@@ -53,6 +62,18 @@ public class TransactionProducer{
             formatter.printHelp("utility-name", options);
             System.exit(1);
             return;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
 

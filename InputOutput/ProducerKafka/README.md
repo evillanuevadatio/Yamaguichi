@@ -21,6 +21,19 @@ Cuando se crea un topic y no se esta en cluster no se puede definir el factor de
 ```
 
 
+## Compilación
+
+```
+> mvn package
+```
+
+
+## Ejecución
+```
+> java -jar target/ProducerKafka-1.0-SNAPSHOT-jar-with-dependencies.jar -i src/main/resources/transactions.csv -s 10 -b localhost:9092 -t chartrix
+```
+
+
 
 
 
