@@ -1,0 +1,1 @@
+transaction, pan, bin, terminal_entry_mode, amount, mcc, currency, date, merchant, response_code, authorization_number, terminal_entry_mode_capability, service_code, terminal_id, visa_fraud

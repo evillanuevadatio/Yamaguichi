@@ -1,0 +1,21 @@
+# VIM
+*.swp
+*.lock*
+*.DS_Store
+
+#MAVEN
+target/
+*.class
+
+
+#SBT
+project/
+
+
+# IntelliJ
+*/.idea/
+.idea/
+*.iml
+*.orig
+.bin
+

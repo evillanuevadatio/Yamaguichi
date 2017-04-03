@@ -1,0 +1,15 @@
+transaction:                    long
+pan:                            string
+bin:                            string
+terminal_entry_mode:            string
+amount:                         float
+mcc:                            string
+currency:                       string
+date:                           datetime
+merchant:                       string
+response_code:                  string
+authorization_number:           long
+terminal_entry_mode_capability: string
+service_code:                   string
+terminal_id:                    int
+visa_fraud:                     int
