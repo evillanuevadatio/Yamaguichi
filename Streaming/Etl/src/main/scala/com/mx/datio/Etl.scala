@@ -23,14 +23,21 @@ object Etl{
             "group.id" -> "kafka-stream",
             "zookeeper.connection.timeout.ms" -> "1000"
         )
+        val topics = Set("chartrix")
+        /*
         val lines = KafkaUtils.createStream[Array[Byte], String, DefaultDecoder, StringDecoder](
             ssc,
             kafkaConf,
             Map("chartrix" -> 1),
             StorageLevel.MEMORY_ONLY
         )
-        
+        */
 
+        val stream = KafkaUtils.createDirectStream[ String, 
+                                                    String, 
+                                                    StringDecoder, 
+                                                    StringDecoder](
+                        ssc, kafkaConf, topics)
 
   }
 
