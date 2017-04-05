@@ -30,6 +30,7 @@ public class KafkaStreaming{
 
         JavaPairInputDStream<String, String> directKafkaStream = KafkaUtils.createDirectStream(ssc,
                 String.class, String.class, StringDecoder.class, StringDecoder.class, kafkaParams, topics);
+		
 
         directKafkaStream.foreachRDD(rdd -> {
             System.out.println("--- New RDD with " + rdd.partitions().size() + " partitions and " + rdd.count() + " records");
