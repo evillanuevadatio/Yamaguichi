@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+    <property>
+      <name>hadoop.tmp.dir</name>
+      <value>/opt/data/tmp</value>
+      <description>A base for other temporary directories.</description>
+    </property>
+
+    <property>
+      <name>hadoop.name.dir</name>
+      <value>/opt/data/namenode</value>
+    </property>
+
+    <property>
+      <name>hadoop.data.dir</name>
+      <value>/opt/data/data/datanode</value>
+    </property>
+
+    <property>
+      <name>fs.default.name</name>
+      <value>hdfs://localhost:9000</value>
+    </property>
+
+    <property>
+      <name>JAVA_HOME</name>
+      <value>${JAVA_HOME}</value>
+    </property>
+
+</configuration>
