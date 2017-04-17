@@ -26,6 +26,7 @@ object ETL {
     //val d1 = dsTransactions.filter( validateTrx )
     kafkaStream.print()
 
+    //val d1 = kafkaStream.filter( (dkey.dval) => )
 
     //d1.filter(  current =>  valu[4] < 0 )
     //val epoch = System.currentTimeMillis / 1000
