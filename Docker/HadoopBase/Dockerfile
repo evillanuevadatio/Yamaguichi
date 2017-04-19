@@ -14,6 +14,17 @@ RUN mkdir /opt/ && \
 	mkdir -p /opt/data/datanode
 
 
+# passwordless ssh
+RUN rm -f /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_rsa_key /root/.ssh/id_rsa && \
+	 ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key && \
+	 ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key && \
+	 ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa && \
+	 cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
+
+ADD ssh_config /root/.ssh/config
+RUN chmod 600 /root/.ssh/config
+RUN chown root:root /root/.ssh/config
+
 ENV HADOOP_HOME /opt/hadoop-2.7.3
 ENV HADOOP_CONF_DIR="${HADOOP_HOME}/etc/hadoop"
 ENV HADOOP_LIBEXEC_DIR="${HADOOP_HOME}/libexec"
@@ -21,7 +32,7 @@ ENV HADOOP_LIBEXEC_DIR="${HADOOP_HOME}/libexec"
 RUN sed -i 's/export JAVA_HOME=${JAVA_HOME}/export JAVA_HOME=\/usr\/lib\/jvm\/java-1.8-openjdk/g' /opt/hadoop-2.7.3/etc/hadoop/hadoop-env.sh
 
 ENV PATH $PATH:${HADOOP_HOME}/sbin/:${HADOOP_HOME}/bin
-RUN ssh-keygen -f /root/.ssh/id_rsa -t rsa -N ''
+#RUN ssh-keygen -f /root/.ssh/id_rsa -t rsa -N ''
 
 ADD conf/* /opt/hadoop-2.7.3/etc/hadoop/	
 

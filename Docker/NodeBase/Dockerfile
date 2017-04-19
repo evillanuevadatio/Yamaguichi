@@ -13,10 +13,11 @@ RUN apk add "$JAVA_DISTRIBUTION$JAVA_VERSION" --update && \
      rm -rf /var/cache/apk/* && \
      ln -s "/usr/lib/jvm/java-1.$JAVA_VERSION-openjdk/bin/javac" /usr/bin/javac
 
-RUN apk add --update bash &&   rm -rf /var/cache/apk/* && \
-    apk add --update curl &&   rm -rf /var/cache/apk/* && \
-    apk add --update procps &&   rm -rf /var/cache/apk/* && \
-    apk add --update sed gawk  &&   rm -rf /var/cache/apk/*
+RUN apk add --update bash &&   \
+    apk add --update curl &&   \
+    apk add --update procps && \
+    apk add --update sed gawk  &&  \
+    apk add --update openssh  &&   rm -rf /var/cache/apk/*
 
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 

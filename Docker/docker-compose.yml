@@ -1,14 +1,11 @@
 version: "3"
 
 services:    
- hdfs-namenode:
-  image: hdfs-namenode
-  hostname: hdfs-namenode-host
+ hadoop-namenode:
+  image: hadoop-namenode
+  hostname: hadoop-namenode-host
   ports:
     # HDFS port
     - "9000:9000"
     # HDFS NameNode WebUI
     - "50070:50070"
-  # Adjust according to the resources available on host machine
-  cpu_shares: 3000
-  mem_limit: 2g
